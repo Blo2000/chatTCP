@@ -10,7 +10,7 @@ public class ServidorMain {
         int puerto = 6001;
         ServerSocket servidor = null;
         HiloCliente hc;
-        ArrayList<DataOutputStream> clientesConectados = new ArrayList<>();
+
         try {
             servidor = new ServerSocket(puerto);
             System.out.println("Nuevo cliente conectado");
@@ -18,7 +18,7 @@ public class ServidorMain {
                 Socket cliente = servidor.accept();
                 System.out.println("Atendiendo petición del cliente");
 
-                hc = new HiloCliente(cliente,clientesConectados);
+                hc = new HiloCliente(cliente);
                 hc.start();
             }
         } catch (Exception e) {
