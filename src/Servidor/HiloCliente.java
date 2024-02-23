@@ -13,11 +13,14 @@ public class HiloCliente extends Thread{
 
     @Override
     public void run() {
+        String mensaje;
         try {
             InputStream in = cliente.getInputStream();
             DataInputStream entrada = new DataInputStream(in);
             OutputStream out = cliente.getOutputStream();
             DataOutputStream salida = new DataOutputStream(out);
+
+            mensaje = entrada.readUTF();
 
 
 
