@@ -24,10 +24,11 @@ public class HiloCliente extends Thread{
             entrada = new DataInputStream(in);
             OutputStream out = cliente.getOutputStream();
             salida = new DataOutputStream(out);
-
+            System.out.println(clientesConectados.size());
             while (true) {
                 mensaje = entrada.readUTF();
                 System.out.println("Mensaje recibido de un cliente: " + mensaje);
+
                 enviarMensajeATodos(mensaje);
             }
         } catch (IOException e) {
