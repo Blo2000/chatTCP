@@ -15,25 +15,17 @@ public class ClienteMain {
             OutputStream out = cliente.getOutputStream();
             DataOutputStream salida = new DataOutputStream(out);
 
-            System.out.print("Se ha conectado al chad:");
+            System.out.print("Se ha conectado al chad:\n");
             try {
                 while(true){
                     mensajeEnviado = sc.nextLine();
                     salida.writeUTF(mensajeEnviado);
+                    mensajeRecibido = entrada.readUTF();
+                    System.out.println("Servidor: " + mensajeRecibido);
                 }
             }catch (Exception ex){
                 ex.printStackTrace();
             }
-            try {
-                while (true) {
-                    mensajeRecibido = entrada.readUTF();
-                    System.out.println("Servidor: " + mensajeRecibido);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
 
         }catch (IOException e) {
 

@@ -8,8 +8,9 @@ public class HiloCliente extends Thread{
     private Socket cliente;
     private Object aux = new Object();
     private ArrayList<DataOutputStream>  clientesConectados = new ArrayList<>();
-    public HiloCliente(Socket cliente) {
+    public HiloCliente(Socket cliente, ArrayList<DataOutputStream> Conectados) {
         this.cliente = cliente;
+        this.clientesConectados = Conectados;
 
     }
 
@@ -25,11 +26,12 @@ public class HiloCliente extends Thread{
             while (true) {
                 mensaje = entrada.readUTF();
                 System.out.println("Mensaje recibido de un cliente: " + mensaje);
-
+                System.out.println(clientesConectados.size());
                 synchronized (aux) {
                     for (DataOutputStream clientStream : clientesConectados) {
                         if (clientStream != null) {
                             try {
+
                                 clientStream.writeUTF(mensaje);
                             } catch (IOException e) {
                                 e.printStackTrace();
