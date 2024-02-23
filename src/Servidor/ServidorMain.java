@@ -10,7 +10,7 @@ public class ServidorMain {
         HiloCliente hc;
         try {
             servidor = new ServerSocket(puerto);
-
+            System.out.println("Nuevo cliente conectado");
             while (true) {
                 Socket cliente = servidor.accept();
                 System.out.println("Atendiendo petición del cliente");
